@@ -23,7 +23,7 @@ import java.awt.Label;
 
 public class VentanaMemoria extends JFrame {
 
-	final String version ="Versión 1 Es";
+	final String version ="Version 1 En";
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private List<JLabel> labelsPos; // lista para almacenar las etiquetas de posiciones
@@ -37,7 +37,7 @@ public class VentanaMemoria extends JFrame {
 	public VentanaMemoria(Memoria memoria, Flags flag) {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VentanaMemoria.class.getResource("/img/iconoPequennoMemo.png")));
 		setResizable(false);
-		setTitle("Celdas de Memoria Coronariac "+version);
+		setTitle("Memory cell window, Coronariac "+version);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 680, 450);
 		contentPane = new JPanel();
@@ -50,11 +50,11 @@ public class VentanaMemoria extends JFrame {
 		labelsPos = new ArrayList<>();
 		labelsCeldas = new ArrayList<>();
 		
-		JLabel lblNewLabel = new JLabel("Salida");
+		JLabel lblNewLabel = new JLabel("Output");
 		lblNewLabel.setBounds(10, 343, 44, 14);
 		contentPane.add(lblNewLabel);
 		
-		JButton botonProgramar = new JButton("Programar");
+		JButton botonProgramar = new JButton("Program");
 		botonProgramar.setBounds(538, 368, 118, 23);
 		contentPane.add(botonProgramar);
 		
@@ -68,7 +68,7 @@ public class VentanaMemoria extends JFrame {
 		contentPane.add(this.textoSalida);
 		
 		//Label labelUbicacion = new Label("Procesando ubicación: X");
-		labelUbicacion.setText("Procesando ubicación 0");
+		labelUbicacion.setText("Processing position");
 		labelUbicacion.setBounds(10, 0, 210, 21);
 		contentPane.add(labelUbicacion);
 				
@@ -109,21 +109,21 @@ public class VentanaMemoria extends JFrame {
 
 		            //vemos si hay 3 digitos o es negativo
 		            if (!valor.matches("-?\\d{3}")) {
-		            	 JOptionPane.showMessageDialog(null, "El valor en la celda debe ser un número de exactamente 3 dígitos. Valor inválido: " + valor);
+		            	 JOptionPane.showMessageDialog(null, "Cell values must be exactly 3-digit numbers. Invalid value: " + valor);
 		                throw new IllegalArgumentException(
 		                		
-		                    "El valor en la celda debe ser un número de exactamente 3 dígitos. Valor inválido: " + valor);
+		                    "Cell values must be exactly 3-digit numbers. Invalid value: " + valor);
 		               
 		            }
 
-		            System.out.println("Posición = " + posicion + " Valor = " + valor);
+		            System.out.println("Position = " + posicion + " Value = " + valor);
 		            memoria.setRam(posicion, valor);
 		        } catch (NumberFormatException ex) {
-		            System.err.println("Error al convertir la posición a número: " + ex.getMessage());
+		            System.err.println("Error casting value to number: " + ex.getMessage());
 		        } catch (IllegalArgumentException ex) {
-		            System.err.println("Error en el valor: " + ex.getMessage());
+		            System.err.println("Error in value: " + ex.getMessage());
 		        } catch (IndexOutOfBoundsException ex) {
-		            System.err.println("Posición fuera de los límites de la memoria: " + ex.getMessage());
+		            System.err.println("Position out of bounds: " + ex.getMessage());
 		        }
 		    }
 		});
@@ -132,7 +132,7 @@ public class VentanaMemoria extends JFrame {
 	}
 	
 	public void escribirTextoUbicacionActual(int posicion) {
-		this.labelUbicacion.setText("Procesando ubicación "+posicion);
+		this.labelUbicacion.setText("Processing position "+posicion);
 	}
 	
 	public void actualizarTarjetaSalida(EntradaSalida io) {
